@@ -46,10 +46,14 @@ Use the copy function below to do the following:
 */
 
 
-function copy(/*your code here*/){
-  /*your code here*/
+function copy(arrayToCopy){
+  let copyArray = [...arrayToCopy];
+  return copyArray;
 }
 
+const secondArray = copy(originalFlavors);
+
+console.log(secondArray);
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -63,9 +67,12 @@ For Example: is31Flavors(originalFlavors) will return true if your code is worki
 */
 
 
-function is31Flavors(/*your code here*/){
-  /*your code here*/
+function is31Flavors(paramArray){
+  if(paramArray.length === 31) {
+    return true;
+  }
  }
+ console.log(is31Flavors(secondArray));
 
 
 
@@ -82,10 +89,13 @@ Use the addFlavor function below to do the following:
 */
 
 
-function addFlavor(/*your code here*/){
-  /*your code here*/
+function addFlavor(flavorArray, newFlavor){
+  flavorArray.unshift(newFlavor);
+  return flavorArray;
  }
 
+ console.log(addFlavor(secondArray, 'Rainbow Sherbert'));
+ console.log(secondArray);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -99,10 +109,12 @@ Use the removeLastFlavor function below to do the following:
   For example: running removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]
 */
 
-
-function removeLastFlavor(/*your code here*/){
- /*your code here*/
+function removeLastFlavor(getArray){
+ getArray.pop();
+ return getArray;
 }
+
+console.log(removeLastFlavor(secondArray))
 
 
 
@@ -118,9 +130,11 @@ Use the getFlavorByIndex function below to do the following:
 */
 
 
-function getFlavorByIndex(/*your code here*/){
-  /*your code here*/
+function getFlavorByIndex(arrayParam, numIndex){
+  return arrayParam[numIndex];
 }
+
+console.log(getFlavorByIndex(secondArray, 5));
 
 
 
@@ -138,10 +152,16 @@ Use the removeFlavorByName function below to do the following:
   HINT: You can use .splice() for this
 */
 
-function removeFlavorByName(/*your code here*/){
-  /*your code here*/
+function removeFlavorByName(arrayName, stringRem){
+  let stringIndex = arrayName.indexOf(stringRem);
+  if(arrayName.includes(stringRem)){
+    arrayName.splice(stringIndex, 1)
+  }
+
+  return arrayName;
 }
 
+console.log(removeFlavorByName(secondArray, 'Peppermint Fudge Ribbon'));
 
 
 /*🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -163,10 +183,20 @@ Use the filterByWord function below to do the following:
 */
 
 
-function filterByWord(/*your code here*/){
-  /*your code here*/
+function filterByWord(arrayWant, filterFlavor){
+  filterFlavor.toLowerCase();
+  let newArray = []
+
+  for(let i=0; i<arrayWant.length; i++){
+      if(arrayWant[i].includes(filterFlavor)){
+    newArray.push(arrayWant[i]);
+    }
+  }
+
+  return newArray;
 }
 
+console.log(filterByWord(secondArray, 'chocolate'));
 
 
 /* 💪💪💪💪💪🧁🍦🍨 STRETCH 🍨🍦🍫💪💪💪💪💪*/ 
