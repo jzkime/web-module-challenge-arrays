@@ -52,7 +52,6 @@ function copy(arrayToCopy){
 }
 
 const secondArray = copy(originalFlavors);
-
 console.log(secondArray);
 
 
@@ -184,11 +183,12 @@ Use the filterByWord function below to do the following:
 
 
 function filterByWord(arrayWant, filterFlavor){
-  filterFlavor.toLowerCase();
+  let flavLow = filterFlavor.toLowerCase();
   let newArray = []
 
   for(let i=0; i<arrayWant.length; i++){
-      if(arrayWant[i].includes(filterFlavor)){
+    let lowItem = arrayWant[i].toLowerCase();
+      if(lowItem.includes(flavLow)){
     newArray.push(arrayWant[i]);
     }
   }
@@ -211,9 +211,27 @@ Use the getAverageWordLength function below to do the following:
   For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-  /*code here*/
+// put a small test that I can easily fact check by myself through the function
+const testArr = ['five eight', 'nine four six', 'twelve eleven'] 
+
+let testCount = originalFlavors[0].split(' ')
+//console.log(testCount.length)
+
+function getAverageWordLength(testArray){
+  let numberArray = [];
+  let counter = 0;
+
+  for(let i=0; i<testArray.length; i++){
+    let testCount = testArray[i].split(' '); //split outputs each item into it's own separate array (the ' ' defines where to split)
+    numberArray.push(testCount.length);     // because it makes a new array, you have to use .length to get the number out of it, that's what I pushed into each array
+    counter = counter + testCount.length;   // increased the counter everytime looped
+  }
+                                              // i'm sure there's a way to do this that can use the array itself without the counter but this is also worked.
+  let quotient = counter / numberArray.length;
+return quotient;
 }
+
+console.log(getAverageWordLength(originalFlavors));
 
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
@@ -223,97 +241,150 @@ from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors and s
 Use the getRandomFlavors function and new arrays below to do the following:
   1. Receive the four arrays with all the differnet flavors (originalFlavors is above, the others are below)
   2. Randomly pick flavors from all four arrays
-  3. Return a new array called randomFlavors that has a lenght of 31
+  3. Return a new array called randomFlavors that has a lenght of 31x
 
   For example: getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].
 */
 
+// NEW DATA ARRAYS FOR STRETCH 2 ⬇️
+const newFlavors = [
+  "Date night",
+  "U.S.S Butterscotch (Stranger Things special)",
+  "Honey Almond",
+  "Mint Chocolate Chip",
+  "Chocolate",
+  "Oreo® Cookies'n Cream",
+  "Chocolate Chip",
+  "Pralines 'n Cream",
+  "Very Berry Strawberry",
+  "Chocolate Chip Cookie Dough",
+  "Old Fashioned Butter Pecan",
+  "Jamoca®",
+  "Jamoca® Almond Fudge",
+  "Reese's® Peanut Butter Cup",
+  "Rocky Road",
+  "Peanut Butter ’n Chocolate",
+  "Gold Medal Ribbon®",
+  "World Class® Chocolate",
+  "Cherries Jubilee",
+  "Chocolate Fudge",
+  "Daiquiri Ice",
+  "Rainbow Sherbet",
+  "Rainbow Swirl"
+] 
 
-function getRandomFlavors(/*code here*/){
-  /*code here*/
+const seasonalFlavors = [
+  "America's Birthday Cake",
+  "Baseball Nut®",
+  "Blueberry Cheesecake",
+  "Bourbon Street Pecan Pie",
+  "Brownie Bar Mashup",
+  "Cherry Cordial with Kisses",
+  "Chocolate Mousse Royale",
+  "French Vanilla",
+  "Eggnog",
+  "German Chocolate Cake",
+  "Icing on the Cake",
+  "Love Potion #31",
+  "New York Cheesecake",
+  "Nutty Coconut",
+  "Peppermint",
+  "Strawberry Cheesecake",
+  "Rock ’n Pop Swirl",
+  "Reese’s Peanut Butter Cup",
+  "Trick Oreo Treat",
+  "Winter White Chocolate",
+  "made with Snickers®",
+  "made with M&M's®",
+  "Heath®",
+  "Mango Tango"
+]
+
+const regionalFlavors = [
+  "Pink Bubblegum",
+  "Caramel Macchiato",
+  "York Peppermint Pattie",
+  "Cotton Candy",
+  "Orange Sherbet",
+  "Grape Ice",
+  "Watermelon Ice",
+  "Miami Vice Sorbet",
+  "Splish Splash®",
+  "Wild 'n Reckless Sherbet",
+  "Lemon Custard",
+  "Oregon Blackberry",
+  "Bananas ‘n Strawberries",
+  "Mississippi Mud",
+  "Rum Raisin",
+  "Creole Cream Cheese",
+  "Chocolate Almond",
+  "Fudge Brownie",
+  "Banana Nut",
+  "Black Walnut",
+  "Cotton Candy Crackle",
+  "Quarterback Crunch",
+  "Chocolate Chocolate Chip Cheesecake",
+  "Caramel 'n' Cookies"
+]
+
+function getRandomFlavors(array1, array2, array3, array4){
+  let massArray = [];
+  massArray = array1.concat(array2, array3, array4)
+  //concating the arrays into one single array
+
+  let randomFlavors = [];
+  //creating an empty array for the new random flavors to be put into
+
+  // loop that can only run 31 times
+  for (let i=0; i<31; i++){
+    let randomNumberGen = Math.floor(Math.random()*massArray.length);
+    //random number generator to pick a random array item
+    //when this was outside the loop, it was the same number 31 times
+
+    randomFlavors.push(massArray[randomNumberGen])
+    //this pushes an random index from massArray into the randomFlavors array
+
+  }
+
+  return randomFlavors;
 }
 
-// NEW DATA ARRAYS FOR STRETCH 2 ⬇️
-// const newFlavors = [
-//   "Date night",
-//   "U.S.S Butterscotch (Stranger Things special)",
-//   "Honey Almond",
-//   "Mint Chocolate Chip",
-//   "Chocolate",
-//   "Oreo® Cookies'n Cream",
-//   "Chocolate Chip",
-//   "Pralines 'n Cream",
-//   "Very Berry Strawberry",
-//   "Chocolate Chip Cookie Dough",
-//   "Old Fashioned Butter Pecan",
-//   "Jamoca®",
-//   "Jamoca® Almond Fudge",
-//   "Reese's® Peanut Butter Cup",
-//   "Rocky Road",
-//   "Peanut Butter ’n Chocolate",
-//   "Gold Medal Ribbon®",
-//   "World Class® Chocolate",
-//   "Cherries Jubilee",
-//   "Chocolate Fudge",
-//   "Daiquiri Ice",
-//   "Rainbow Sherbet",
-//   "Rainbow Swirl"
-// ] 
+console.log(getRandomFlavors(secondArray, newFlavors, seasonalFlavors, regionalFlavors));
 
-// const seasonalFlavors = [
-//   "America's Birthday Cake",
-//   "Baseball Nut®",
-//   "Blueberry Cheesecake",
-//   "Bourbon Street Pecan Pie",
-//   "Brownie Bar Mashup",
-//   "Cherry Cordial with Kisses",
-//   "Chocolate Mousse Royale",
-//   "French Vanilla",
-//   "Eggnog",
-//   "German Chocolate Cake",
-//   "Icing on the Cake",
-//   "Love Potion #31",
-//   "New York Cheesecake",
-//   "Nutty Coconut",
-//   "Peppermint",
-//   "Strawberry Cheesecake",
-//   "Rock ’n Pop Swirl",
-//   "Reese’s Peanut Butter Cup",
-//   "Trick Oreo Treat",
-//   "Winter White Chocolate",
-//   "made with Snickers®",
-//   "made with M&M's®",
-//   "Heath®",
-//   "Mango Tango"
-// ]
+//testing output to check amount === 31
+let arrayCC = ['Quarterback Crunch',
+'Vanilla',
+'Date night',
+'Coffee',
+'Fudge Brownie',
+'Jamoca® Almond Fudge',
+'Eggnog',
+'Raspberry Sherbet',
+'Grape Ice',
+'German Chocolate Cake',
+'Orange Sherbet',
+'Chocolate Chip Cookie Dough',
+'Chocolate Almond',
+'Peppermint Stick',
+'Rocky Road',
+'Green Mint Stick',
+'Peanut Butter ’n Chocolate',
+'Mississippi Mud',
+'Rainbow Sherbert',
+'made with Snickers®',
+'Jamoca® Almond Fudge',
+'Old Fashioned Butter Pecan',
+'Bananas ‘n Strawberries',
+'Peppermint Stick',
+"Pralines 'n Cream",
+'Lemon Custard',
+'Oregon Blackberry',
+'Trick Oreo Treat',
+'Raspberry Sherbet',
+'Nutty Coconut',
+'Jamoca® Almond Fudge']
 
-// const regionalFlavors = [
-//   "Pink Bubblegum",
-//   "Caramel Macchiato",
-//   "York Peppermint Pattie",
-//   "Cotton Candy",
-//   "Orange Sherbet",
-//   "Grape Ice",
-//   "Watermelon Ice",
-//   "Miami Vice Sorbet",
-//   "Splish Splash®",
-//   "Wild 'n Reckless Sherbet",
-//   "Lemon Custard",
-//   "Oregon Blackberry",
-//   "Bananas ‘n Strawberries",
-//   "Mississippi Mud",
-//   "Rum Raisin",
-//   "Creole Cream Cheese",
-//   "Chocolate Almond",
-//   "Fudge Brownie",
-//   "Banana Nut",
-//   "Black Walnut",
-//   "Cotton Candy Crackle",
-//   "Quarterback Crunch",
-//   "Chocolate Chocolate Chip Cheesecake",
-//   "Caramel 'n' Cookies"
-// ]
-
+//console.log(arrayCC.length)
 
 
 /* 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑 */
